@@ -75,9 +75,11 @@ class IQTestGenerator:
                     "success": False,
                     "error": f"Failed to generate section: {section_name}"
                 }
+
+            cleaned = re.sub(r'<think>.*?</think>', '', section_content, flags=re.DOTALL)
             
             # Append to test content
-            test_content += section_content + "\n\n"
+            test_content += cleaned + "\n\n"
             
             # Update progress in test record with thread safety
             with storage_lock:
