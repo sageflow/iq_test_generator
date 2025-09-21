@@ -24,7 +24,7 @@ Output Format:
 - Section: Verbal Reasoning (10-12 questions, 7-8 minutes)
 - Question: Question text
 - Options: List of options (A, B, C, D)
-- Answer: Correct Option (A OR B OR C OR D)
+- Answer Key: Question Number and Correct Option (A OR B OR C OR D)
 """,
         
         "section_2": f"""
