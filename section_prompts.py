@@ -21,10 +21,10 @@ Generate questions testing:
 - Verbal classification (identifying word that doesn't belong)
 
 Output Format:
-- Section: Verbal Reasoning (10-12 questions, 7-8 minutes)
+- Section Name: Verbal Reasoning (10-12 questions, 7-8 minutes)
 - Question: Question text
 - Options: List of options (A, B, C, D)
-- Answer Key: Question Number and Correct Option (A OR B OR C OR D)
+- Answer Key (at the end of the section): Question Number and Correct Option (A OR B OR C OR D)
 """,
         
         "section_2": f"""
@@ -42,10 +42,10 @@ Generate questions testing:
 - Unit Conversion & Measurement (Problems involving currency, time, length, or volume conversions)
 
 Output Format:
-- Section: Mathematical Reasoning (10-12 questions, 10 minutes)
+- Section Name: Mathematical Reasoning (10-12 questions, 10 minutes)
 - Question: Question text
 - Options: List of options (A, B, C, D)
-- Answer: Correct answer
+- Answer Key (at the end of the section): Question Number and Correct Option (A OR B OR C OR D)
 """,
         
         "section_3": f"""
@@ -62,10 +62,10 @@ Generate questions testing:
 - Hidden figures (identifying shapes within complex figures)
 
 Output Format:
-- Section: Spatial/Visual Reasoning (10-12 questions, 7-8 minutes)
+- Section Name: Spatial/Visual Reasoning (10-12 questions, 7-8 minutes)
 - Question: Question text (Describe patterns clearly using text, symbols, or ASCII art)
 - Options: List of options (A, B, C, D)
-- Answer: Correct answer
+- Answer Key (at the end of the section): Question Number and Correct Option (A OR B OR C OR D)
 """
     }
     
