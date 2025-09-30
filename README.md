@@ -1,1 +1,0 @@
-# iq_test_generator

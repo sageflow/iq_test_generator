@@ -1,0 +1,886 @@
+<think>
+Alright, so I'm trying to figure out how to generate a comprehensive IQ test for 17-year-olds based on the user's query. The user is an expert psychometric test designer focusing on cognitive assessments for adolescents. They want a section on Verbal Reasoning with specific instructions and requirements.
+
+First, I need to understand what exactly they're asking for. They provided detailed specifications about the structure of the test, including sections like Vocabulary, Verbal Analogies, Sentence Completion, Reading Comprehension, and Verbal Classification. Each of these has sub-sections with specific question types.
+
+They mentioned that the test should have 10-12 questions in the Verbal Reasoning section within 7-8 minutes. Each question must be a multiple-choice with exactly four options (A to D). The instructions for each question type need clear guidance, and the passages used for Reading Comprehension should be short but relevant.
+
+The vocabulary needs to be appropriate for 17-year-olds, so I should consider their educational level and exposure to different words. For example, including terms from literature, general knowledge, and maybe some scientific or historical references since they're likely to have diverse interests by this age.
+
+Looking at each question type:
+
+1. **Vocabulary:** This would involve word definitions or synonyms/antonyms. I should ensure the words are challenging but not too obscure. Maybe include a mix of context clues and direct definitions.
+
+2. **Verbal Analogies:** These test understanding of word relationships, like "Dog: Puppy:: Cat: __." It's important to present these in a way that clearly shows the relationship without using jargon they might not recognize.
+
+3. **Sentence Completion:** This requires choosing the best word to complete an idea or sentence. I need to ensure the options are plausible and the correct answer makes logical sense within context.
+
+4. **Reading Comprehension:** Short passages on various topics will test their ability to infer information. The passages should be concise but cover different subjects to keep it engaging.
+
+5. **Verbal Classification:** Here, they have to identify the odd word out based on some shared characteristic. I need to create categories that are clear and distinct so there's no ambiguity in the answers.
+
+Now, considering the time limit of 7-8 minutes for 12 questions, each question should be designed to be answered quickly without being too lengthy. The test-takers should not get stuck on any single question, which means the difficulty should escalate gradually if possible, but within a short span it's probably better to have varied difficulties.
+
+I also need to ensure that all answer options are plausible except for one correct choice. This will make each question fair and effective in testing their abilities. Including distractors that are close can add to the challenge without being too harsh.
+
+Another consideration is the flow of the test. Starting with easier questions might help build confidence, then increasing difficulty as they progress. But since it's a section within a larger test, perhaps the Verbal Reasoning should be structured in order from simpler to more complex question types or topics.
+
+I also need to make sure that each question clearly follows the instructions provided. For example, in the Vocabulary section, making sure whether they're asked for synonyms, antonyms, or definitions is clear.
+
+For Reading Comprehension passages, it's important they are concise and cover a variety of subjects so that test-takers can practice different skills. Each passage should have about 3-4 sentences to give enough context without being too long.
+
+In terms of the answer key, it needs to be accurate at the end so that the user knows the correct answers for reference or further assessment.
+
+I might also think about possible areas where students commonly struggle and ensure those are covered in the questions. For example, understanding idioms or metaphors could come up in Verbal Analogies or Sentence Completion, but since they specified word relationships, maybe stick to more straightforward analogies.
+
+Also, considering that this is for 17-year-olds, some of the vocabulary might include references from pop culture, literature, or current events, which would make it more relevant and engaging.
+
+Finally, I need to ensure consistency in formatting. Each section starts with "Section: Verbal Reasoning (X questions, Y minutes)" followed by numbered questions with clear instructions and answer choices labeled A-D at the end of each question block.
+
+Putting this all together, I'll draft 10-12 questions across the specified categories, making sure they're varied in difficulty and type to comprehensively test verbal reasoning abilities.
+</think>
+
+### Verbal Reasoning (10 Questions, 7-8 minutes)
+
+**Instructions:** Choose the best answer that completes or explains the statement.
+
+---
+
+**Q1. Vocabulary: Synonyms/Antonyms**
+
+Which word is the opposite of "proactive"?
+
+A) Active  
+B) Reactive  
+C) Uninquisitive  
+D) Inert  
+
+---
+
+**Q2. Verbal Analogies**
+
+Complete the analogy: **Pencil is to Eraser as Pen is to ________?**
+
+A) Highlighter  
+B) Sharpener  
+C) Refill  
+D) Eraser  
+
+---
+
+**Q3. Sentence Completion**
+
+The ability to think critically is essential for solving complex problems, especially in an __________ environment.
+
+A) chaotic  
+B) stressful  
+C) logical  
+D) unpredictable  
+
+---
+
+**Q4. Reading Comprehension**
+
+Read the following passage and answer the question:
+
+*The sun was setting when John first noticed the painting on the wall. He thought it was a beautiful piece of art until he realized it was a全家福 photo taken during a family trip years ago.*
+
+According to the passage, why does John think the painting is a全家福 photo?
+
+A) It was taken during a family trip.  
+B) It shows John and his family at that time.  
+C) It was hanging on the wall.  
+D) It was found in a photo album.  
+
+---
+
+**Q5. Vocabulary: Word Definitions**
+
+Which word defines "the quality of being able to think clearly and logically"?
+
+A) Creativity  
+B) Intelligence  
+C) Critical thinking  
+D) Memory  
+
+---
+
+**Q6. Verbal Analogies**
+
+Complete the analogy: **Book is to Author as Painting is to ________?**
+
+A) Museum  
+B) Artist  
+C) Gallery  
+D) Museum  
+
+---
+
+**Q7. Sentence Completion**
+
+The students were rewarded for their hard work with a __________ prize.
+
+A) Significant  
+B) Honorable  
+C) Unimportant  
+D) Ordinary  
+
+---
+
+**Q8. Reading Comprehension**
+
+Read the following passage and answer the question:
+
+*In 1950, a team of explorers set out to climb Mount Everest. Despite its difficulty, they reached the summit after several months of intense effort. Their achievement was met with great __________ from the international community.*
+
+A) Criticism  
+B) Recognition  
+C) Disappointment  
+D) Ignore  
+
+---
+
+**Q9. Vocabulary: Synonyms**
+
+Which word is a synonym for "diligent"?
+
+A) Hardworking  
+B)_lazy  
+C) Careless  
+D) Sloppy  
+
+---
+
+**Q10. Verbal Classification**
+
+Identify the odd word out based on its definition.
+
+A) Dog  
+B) Cat  
+C) Fish  
+D) Starfish  
+
+---
+
+### Answer Key:
+1. D  
+2. B  
+3. A  
+4. B  
+5. C  
+6. B  
+7. A  
+8. B  
+9. A  
+10. D
+
+<think>
+Alright, I'm trying to come up with a comprehensive IQ test for 17-year-olds focusing on Mathematical Reasoning. Let me break down what the user is asking for.
+
+First, they want 10-12 questions within a 10-minute time frame. That means each question should be quick but challenging enough to assess mathematical reasoning without being too lengthy. The section includes number sequences, algebra, word problems, proportions, percentages, and geometric reasoning.
+
+I need to ensure the difficulty is appropriate for pre-algebra to early algebra concepts. Each question must have exactly four options (A-D), so I'll structure each with plausible distractors. 
+
+Starting with number sequences: Maybe a pattern like adding an incrementing number. For example, 2, 5, 9, ... where each term increases by one more than the previous.
+
+Next, algebraic equations: A single variable equation that requires solving step-by-step. It should be solvable in a few minutes and have integer solutions to keep it straightforward for adolescents.
+
+Word problems are essential. They should reflect practical scenarios, like calculating discounts or time. I'll make sure each problem has clear steps but isn't too complicated.
+
+Proportions and percentages: Maybe something involving ratios of items or percentage increase/decrease. It's important these are relatable examples to ensure clarity.
+
+Geometric reasoning could include perimeters or areas with basic shapes. I should avoid complex figures since it's for adolescents who might be still developing their geometric intuition.
+
+Logical deduction can involve solving variables using given equations, which tests both algebraic manipulation and logical thinking.
+
+Now, considering the answer key, each question needs a clear correct answer among A-D. I'll number them Q1 to Q12 as per the user's instructions.
+
+I also need to make sure there are 10-12 questions total, so after drafting several in each category, I can select the best ones that fit within the time constraint and difficulty level.
+
+Finally, reviewing all questions for clarity and ensuring they cover a good range of topics. If any seem too easy or too hard, I'll adjust them to maintain fairness and challenge.
+</think>
+
+### Mathematical Reasoning  
+**Section:** Mathematical Reasoning (10-12 questions, 10 minutes)  
+
+---
+
+#### **Instructions:**  
+Solve each mathematical problem and choose the correct answer from options A, B, C, or D.  
+
+---
+
+### Q1: Number Sequences  
+What is the next number in the sequence?  
+5, 8, 13, 21, ...  
+
+A) 30  
+B) 29  
+C) 31  
+D) 28  
+
+**Answer Key:** Q1:A  
+
+---
+
+### Q2: Basic Algebra  
+Solve for \( x \):  
+\( 4x + 7 = 23 \)  
+
+A) 4  
+B) 5  
+C) 6  
+D) 7  
+
+**Answer Key:** Q2:B  
+
+---
+
+### Q3: Word Problem (Discounts)  
+A store is offering a 15% discount on all electronics. If a laptop originally costs \$400, what is the sale price after the discount?  
+
+A) \$390  
+B) \$380  
+C) \$360  
+D) \$370  
+
+**Answer Key:** Q3:D  
+
+---
+
+### Q4: Proportions and Percentages  
+If 5 apples cost \$2.50, how much would 12 apples cost?  
+
+A) \$6.00  
+B) \$6.25  
+C) \$6.50  
+D) \$7.00  
+
+**Answer Key:** Q4:A  
+
+---
+
+### Q5: Geometric Reasoning (Perimeter)  
+What is the perimeter of a rectangle with length 10 cm and width 5 cm?  
+
+A) 15 cm  
+B) 20 cm  
+C) 30 cm  
+D) 40 cm  
+
+**Answer Key:** Q5:C  
+
+---
+
+### Q6: Logical Mathematical Deduction  
+If \( x + y = 10 \) and \( x - y = 2 \), what is the value of \( x \)?  
+
+A) 6  
+B) 7  
+C) 8  
+D) 9  
+
+**Answer Key:** Q6:A  
+
+---
+
+### Q7: Basic Algebra (Word Problem)  
+John is twice as old as Mary. In 5 years, John will be three times as old as Mary. How old is John now?  
+
+A) 10  
+B) 12  
+C) 14  
+D) 16  
+
+**Answer Key:** Q7:C  
+
+---
+
+### Q8: Number Sequences (Basic Patterns)  
+What is the missing number in the sequence?  
+3, 6, 9, \_, 15, 18  
+
+A) 10  
+B) 12  
+C) 13  
+D) 14  
+
+**Answer Key:** Q8:B  
+
+---
+
+### Q9: Word Problem (Rates)  
+A car travels at an average speed of 60 km/h for 2.5 hours. How far has the car traveled?  
+
+A) 120 km  
+B) 135 km  
+C) 150 km  
+D) 175 km  
+
+**Answer Key:** Q9:C  
+
+---
+
+### Q10: Proportions and Percentages (Fractions of a Number)  
+What is 25% of 84?  
+
+A) 16  
+B) 20  
+C) 21  
+D) 24  
+
+**Answer Key:** Q10:C  
+
+---
+
+### Q11: Basic Algebra (Quadratic Equations - One Variable)  
+Solve for \( x \):  
+\( x^2 = 49 \)  
+
+A) 7 or -7  
+B) 8 or -8  
+C) 9 or -9  
+D) 10 or -10  
+
+**Answer Key:** Q11:A  
+
+---
+
+### Q12: Geometric Reasoning (Area of a Circle)  
+What is the area of a circle with radius 7 cm? Use \( \pi = 3.14 \).  
+
+A) 153.86 cm²  
+B) 176.12 cm²  
+C) 196.00 cm²  
+D) 235.52 cm²  
+
+**Answer Key:** Q12:B  
+
+---
+
+### **Answer Key:**  
+Q1:A, Q2:B, Q3:D, Q4:A, Q5:C, Q6:A, Q7:C, Q8:B, Q9:C, Q10:C, Q11:A, Q12:B
+
+<think>
+Okay, I need to design a comprehensive IQ test for 17-year-olds focusing on Spatial/Visual Reasoning. The user has specified that it should include six different question types, each with specific examples and instructions.
+
+First, I'll outline the sections: there's one section called Spatial/Visual Reasoning with 10-12 questions in 7-8 minutes. Each question must be multiple-choice with options A-D.
+
+I need to make sure that each of the specified question types is included: pattern completion, mental rotation, spatial folding, visual analogies, matrix reasoning, and hidden figures. I'll allocate roughly two questions per type since there are six types and about 12 questions in total.
+
+For each question type:
+
+1. **Pattern Completion**: Create a grid where part of the pattern is missing. The options should provide plausible alternatives based on the given part. I need to ensure that the patterns are clearly described so that 17-year-olds can visualize them without issues.
+
+2. **Mental Rotation**: Show a shape and its rotated version, asking which option matches the rotation when turned in their mind. I'll have to describe shapes with clear symbols or text to avoid confusion.
+
+3. **Spatial Folding**: Provide an unfolded net of a cube or another shape, and ask how it looks when folded. It's important that each net is clearly described so that visualizing isn't too hard for the target age group.
+
+4. **Visual Analogies**: Show two shapes with a relationship (like transformation) and present options to pick the one that continues the analogy. I'll have to ensure that the relationships are clear, such as rotation, reflection, or addition.
+
+5. **Matrix Reasoning**: Use 3x3 grids with patterns moving from row to column, asking which piece fits in the missing spot. The movement of elements (like dots or lines) should be consistent and noticeable enough.
+
+6. **Hidden Figures**: Present a complex figure composed of multiple shapes, with one specific shape hidden among others. I'll need to describe these figures clearly so that they can be identified without requiring advanced knowledge.
+
+I also need to make sure the instructions are clear: each question requires choosing from options A-D based on analyzing the visual patterns. The time limit is 7-8 minutes for around 12 questions, which should be manageable given the age group's attention span.
+
+Now, I'll start drafting each question with these considerations in mind, ensuring that each type is represented accurately and the difficulty level is appropriate.
+</think>
+
+### Spatial/Visual Reasoning (10-12 questions, 7-8 minutes)
+
+**Instructions:** Analyze the visual patterns and choose the correct answer. Each question will present a visual challenge related to spatial reasoning, testing your ability to visualize transformations, recognize patterns, and understand relationships between shapes.
+
+---
+
+#### Q1: Pattern Completion  
+Below is a grid with some squares shaded. The pattern in the top-left 2x2 grid continues into the larger grid. Which of the following options (A-D) correctly shows how this pattern would appear?
+
+**Visual Pattern:** A smaller 2x2 grid where two opposite corners are shaded, followed by an empty 3x3 grid with a single square shaded in the center.
+
+**Options:**
+- **A:** A 3x3 grid with all squares shaded.
+- **B:** A 3x3 grid with top and bottom rows fully shaded.
+- **C:** A 3x3 grid with only the middle column shaded.
+- **D:** A 3x3 grid where the center square is shaded along with two adjacent corners.
+
+**Answer Key: Q1:A**
+
+---
+
+#### Q2: Mental Rotation  
+The shape on the left, when rotated clockwise by 90 degrees, will match one of the options. Which option (A-D) shows this correctly?
+
+**Visual Pattern:** A right-angled triangle pointing to the right in its original position.
+
+**Options:**
+- **A:** Triangle pointing upwards.
+- **B:** Triangle pointing downwards.
+- **C:** Triangle pointing to the left.
+- **D:** Triangle rotated 180 degrees (pointing to the bottom-left corner).
+
+**Answer Key: Q2:A**
+
+---
+
+#### Q3: Spatial Folding  
+Which of the options (A-D) correctly shows how the given net will look when folded into a cube?
+
+**Visual Pattern:** A cross-shaped net with four squares attached to each side.
+
+**Options:**
+- **A:** Cube with all faces showing different colors.
+- **B:** Cube missing one face where the center square was in the net.
+- **C:** Cube with adjacent faces matching the original net's orientation.
+- **D:** Cube with front and back faces identical, top and bottom mirrored.
+
+**Answer Key: Q3:C**
+
+---
+
+#### Q4: Visual Analogies  
+The first two shapes are related. Which option (A-D) completes the analogy in the same way?
+
+**Visual Pattern:** A circle turning into a square, then rotating 180 degrees.
+
+**Options:**
+- **A:** Square rotating clockwise.
+- **B:** Circle rotating counterclockwise.
+- **C:** Square turning into a triangle and rotating.
+- **D:** Circle flipping vertically.
+
+**Answer Key: Q4:B**
+
+---
+
+#### Q5: Matrix Reasoning  
+The grid (3x3) follows a pattern from top-left to bottom-right. Which option (A-D) completes the missing cell?
+
+**Visual Pattern:** A 3x3 grid where each row has an increasing number of dots moving right, and each column adds a dot at the bottom.
+
+**Options:**
+- **A:** Grid with three rows of two, middle column having four.
+- **B:** Grid with two rows of one, last cell missing.
+- **C:** Grid following vertical addition only.
+- **D:** Grid mirroring top-right to bottom-left diagonal.
+
+**Answer Key: Q5:A**
+
+---
+
+#### Q6: Hidden Figures  
+Which option (A-D) correctly identifies the hidden shape within the complex figure?
+
+**Visual Pattern:** A star-shaped figure composed of multiple triangles, with a hexagon hidden inside it.
+
+**Options:**
+- **A:** Hexagon at top center.
+- **B:** Triangle at bottom left.
+- **C:** Pentagon in middle right.
+- **D:** Hexagon in lower right corner.
+
+**Answer Key: Q6:D**
+
+---
+
+### Answer Key  
+1:A, 2:A, 3:C, 4:B, 5:A, 6:D
+
+<think>
+Alright, so I need to create a comprehensive IQ test for 17-year-olds focusing on logical/abstract reasoning. They want 10-12 questions with specific types of problems like sequential reasoning, rule identification, etc. Each question should have four options and an answer key at the end.
+
+First, I'll start by outlining each section to make sure all requirements are met. There's a time limit of 7-8 minutes for about 10 questions, so I need to ensure each question isn't too lengthy but still challenging enough.
+
+I'll begin with sequential reasoning. These types of problems require identifying patterns in sequences and predicting the next item. Maybe using geometric shapes or symbols that change based on some rule. I should vary the complexity here—some could involve changing one attribute at a time, others might have multiple variables affecting the pattern.
+
+Next is rule identification. This involves finding out how symbols are arranged according to certain rules. For example, maybe elements move positions in each step, and I need to determine which symbol comes next based on those movements. I should make sure these rules aren't too obvious but still discernible with careful observation.
+
+Logical deduction questions will test if-then scenarios. Perhaps presenting a set of conditions where certain actions lead to others, requiring the examinee to deduce outcomes step by step. It's important to present clear cause-effect relationships without relying on prior knowledge, so using abstract symbols or shapes makes sense here.
+
+Classification tasks involve grouping items based on abstract rules. This could be identifying which shape doesn't fit a particular category based on certain attributes like color, number of sides, angles, etc. Each group should have a distinct rule to apply, ensuring that the examinee has to figure out the underlying principle.
+
+Coding/decoding questions will involve substituting symbols for elements and then deciphering what they represent. Maybe creating codes where each symbol stands in for numbers or letters, requiring reverse thinking to decode the message.
+
+Lastly, relationship identification will look at how different shapes or symbols relate to each other within a figure. This could involve understanding transformations like rotation, reflection, or scaling, and determining which option correctly extends that transformation.
+
+Now, considering the time constraint of 7-8 minutes for around 10 questions, I need to balance question complexity without rushing. Each question should have a clear solution path but enough challenge to test reasoning skills.
+
+I'll structure each section with these types, ensuring variety in the patterns and rules tested. The answer key needs to be accurately mapped once all questions are designed.
+
+Let me start drafting the first question: Sequential Reasoning. Maybe using geometric shapes that change color or position based on a simple rule like rotating 90 degrees clockwise each time. That's straightforward but effective for testing pattern recognition.
+
+Moving on to Rule Identification, perhaps an example where a symbol moves from one corner to another in a specific sequence, requiring the examinee to figure out which option correctly follows this movement pattern after several steps.
+
+For Logical Deduction, I can create conditional statements like "If A happens, then B must follow" and present scenarios based on these conditions. The examinee needs to apply the rules to determine possible outcomes step by step.
+
+Classification will involve shapes with different numbers of sides or colors that need to be grouped correctly based on a specific attribute, testing if they can identify the rule behind grouping.
+
+Coding/decoding could involve replacing each shape with a corresponding number or letter and then decoding a hidden message by mapping back. This tests substitution skills.
+
+Lastly, Relationship Identification will present figures where shapes are transformed in certain ways (like rotation or reflection), and the examinee has to choose which figure logically extends this pattern.
+
+I think these six question types cover all required areas adequately, providing a comprehensive assessment within the time frame.
+</think>
+
+**Logical/Abstract Reasoning Test for 17-Year-Olds**
+
+---
+
+### Section: Logical/Abstract Reasoning  
+**(10 Questions)**  
+
+---
+
+#### **Q1: Sequential Reasoning (2 minutes)**  
+**Question:** Identify the next shape in the sequence.  
+
+```
+A) [Shape A] B) [Shape D] C) [Shape C] D) [Shape B]
+```
+
+**Instructions:** The shapes follow a specific pattern based on rotation and color change.
+
+---
+
+#### **Q2: Rule Identification (1 minute)**  
+**Question:** Which symbol completes the sequence?  
+
+```
+A) [Symbol A] B) [Symbol D] C) [Symbol C] D) [Symbol B]
+```
+
+**Instructions:** The symbols follow a pattern where they move one position clockwise and change color based on a specific rule.
+
+---
+
+#### **Q3: Logical Deduction (1 minute)**  
+**Question:** If all cubes are painted blue, then which container holds only unpainted cubes?  
+
+A) Container 1 B) Container 2 C) Container 3 D) Container 4
+
+**Instructions:** Each container has a mixture of cubes with different colors. The rule is: "If all cubes are painted blue, they must be in the same container."
+
+---
+
+#### **Q4: Classification (2 minutes)**  
+**Question:** Group the shapes based on their color and number of sides.  
+
+A) [Shape E] B) [Shape F] C) [Shape G] D) [Shape H]
+
+**Instructions:** Shapes are classified as either "red with 3 sides" or "blue with more than 4 sides."
+
+---
+
+#### **Q5: Coding/Decoding (1 minute)**  
+**Question:** Decode the message using the symbol code.  
+
+A) [Symbol X] B) [Symbol Y] C) [Symbol Z] D) [Symbol W]
+
+**Instructions:** Each shape represents a letter or number, where Circle = A and Triangle = 5.
+
+---
+
+#### **Q6: Relationship Identification (2 minutes)**  
+**Question:** Which figure logically follows the pattern?  
+
+A) [Figure X] B) [Figure Y] C) [Figure Z] D) [Figure W]
+
+**Instructions:** The figures follow a transformation pattern where each shape is rotated 90 degrees clockwise and reflected horizontally in sequence.
+
+---
+
+### **Answer Key:**  
+1:A, 2:C, 3:B, 4:A, 5:D, 6:C
+
+<think>
+Okay, so I'm trying to create an IQ test section focused on working memory for 17-year-olds. The user has specified that it should include eight to ten questions within five minutes, each with four multiple-choice options. They want the questions to cover different aspects of working memory: digit span, letter-number sequencing, mental arithmetic, information ordering, and dual-task processing.
+
+First, I need to understand each component they mentioned:
+
+1. **Digit Span**: This tests the ability to remember a sequence of numbers and then manipulate them, like adding or subtracting. For 17-year-olds, maybe longer sequences than younger students but not too complicated. The initial presentation should be clear so they can process it without confusion.
+
+2. **Letter-Number Sequencing**: This involves rearranging mixed sequences. It's about pattern recognition and manipulation, which is a good test of working memory capacity.
+
+3. **Mental Arithmetic**: Calculations without writing, so I need to make sure the questions are solvable mentally but still challenging enough for teens. Addition or subtraction with two-digit numbers might be appropriate.
+
+4. **Information Ordering**: This requires remembering events or items in the correct order based on some given information. Maybe a scenario where they have to arrange steps or facts logically.
+
+5. **Dual-Task Processing**: Simultaneous processing of two tasks, like tracking two sequences at once. This tests their ability to manage cognitive resources effectively.
+
+I should structure each question by first presenting the information clearly, then asking specific questions that require recalling, manipulating, or applying the initial data. Each question must have four options with plausible distractors.
+
+Let me think about how to format this:
+
+- Start with a clear heading for each section.
+- Present the information concisely without overwhelming them.
+- Ensure each question is directly related to the presented info and requires working memory skills.
+
+For example, in Digit Span, I might present two sequences of numbers. The first is the original, then another that's manipulated (like adding 3). They have to pick the correct new sequence.
+
+In Letter-Number Sequencing, perhaps a mixed-up sequence where they need to rearrange letters and numbers correctly based on given rules.
+
+Mental Arithmetic could involve subtracting two three-digit numbers. It needs to be quick but still require focus.
+
+Information Ordering might present several pieces of information with some chronological elements; the test-taker has to arrange them in order, maybe identifying cause-effect or time-based relationships.
+
+Dual-Task Processing could present a scenario where they have to track two separate sequences simultaneously, like remembering two different sets of numbers as they are presented.
+
+I should also make sure that each question doesn't take too long and that the overall section is manageable within five minutes. Maybe eight questions would be ideal, but ten if I can find more without making them too lengthy.
+
+Let me draft some specific examples:
+
+**Digit Span:**
+- Present two digit sequences: Original (e.g., 123456) then a new one where each number is added by 2 (e.g., 345678). The question asks what the next number would be if you subtracted 1 from each digit of the original sequence.
+
+**Letter-Number Sequencing:**
+- Mix letters and numbers, e.g., A3 B5 C2 D4. Then rearrange them in order based on a given rule like alphabetical letters with numerical values sorted ascendingly.
+
+**Mental Arithmetic:**
+- Subtract 123 from 456 without writing anything down; options include the correct result or plausible distractors.
+
+**Information Ordering:**
+- Provide three events related to school, such as submitting homework, attending classes, and taking exams. The test-taker has to order them chronologically.
+
+**Dual-Task Processing:**
+- Simultaneously present two sequences of numbers (e.g., 10,20,30 and 5,6,7) while also presenting another unrelated task like a simple addition problem. They have to remember both number sequences correctly.
+
+I need to ensure each question is clear and the instructions are straightforward so that test-takers can focus on their working memory without confusion.
+
+Now, I'll structure this into sections with eight questions, each having four options labeled A-D. After listing all the questions, I'll provide the answer key as specified.
+</think>
+
+**Working Memory Assessment for 17-Year-Olds**
+
+---
+
+### **Digit Span (2 Questions)**
+**Instructions:** Remember the following number sequences and answer the question.
+
+**Q1:**
+Original Sequence: 123456  
+Manipulated Sequence: Each digit added by 2.  
+What is the next number if each digit of the original sequence was subtracted by 1?  
+A) 012345  
+B) 987654  
+C) 234567  
+D) 654321  
+
+**Q2:**
+Original Sequence: A3 B5 C2 D4  
+What is the correct order of letters and numbers when sorted alphabetically by letter?  
+A) A3, B5, C2, D4  
+B) C2, D4, B5, A3  
+C) B5, D4, C2, A3  
+D) D4, C2, B5, A3  
+
+---
+
+### **Letter-Number Sequencing (2 Questions)**
+**Instructions:** Rearrange the mixed sequences based on the given rule.
+
+**Q3:**
+Mix Sequence: A3 B5 C2 D4  
+Sort by alphabetical letters first, then numerical values ascending.  
+A) A3, B5, C2, D4  
+B) C2, D4, B5, A3  
+C) B5, D4, C2, A3  
+D) D4, C2, B5, A3  
+
+**Q4:**
+Mix Sequence: 1A 2B 3C 4D  
+Sort by numerical values ascending, then alphabetical letters.  
+A) 1A, 2B, 3C, 4D  
+B) 1A, 2B, 4D, 3C  
+C) 1A, 3C, 2B, 4D  
+D) 4D, 3C, 2B, 1A  
+
+---
+
+### **Mental Arithmetic (2 Questions)**
+**Instructions:** Solve without writing; choose the correct result.
+
+**Q5:**
+Calculate 456 - 123.  
+A) 333  
+B) 340  
+C) 339  
+D) 336  
+
+**Q6:**
+Calculate 789 - 321.  
+A) 468  
+B) 467  
+C) 469  
+D) 470  
+
+---
+
+### **Information Ordering (2 Questions)**
+**Instructions:** Arrange the events in chronological order.
+
+**Q7:**
+- Submit homework  
+- Attend class  
+- Take exam  
+Arrange these school-related events.  
+A) Submit homework, attend class, take exam  
+B) Attend class, submit homework, take exam  
+C) Take exam, attend class, submit homework  
+D) Submit homework, take exam, attend class  
+
+**Q8:**
+- Plant seed  
+- Water plant  
+- Wait for growth  
+Arrange these steps in growing a plant.  
+A) Plant seed, water plant, wait for growth  
+B) Water plant, plant seed, wait for growth  
+C) Wait for growth, plant seed, water plant  
+D) Water plant, wait for growth, plant seed  
+
+---
+
+### **Dual-Task Processing (2 Questions)**
+**Instructions:** Track two sequences simultaneously while solving the task.
+
+**Q9:**
+Sequence 1: 5678  
+Sequence 2: ABCD  
+What is the next number in Sequence 1 if each digit is multiplied by 2?  
+A) 1034  
+B) 1134  
+C) 1234  
+D) 1334  
+
+**Q10:**
+Current time: 3:15 PM  
+Add 45 minutes to the time. What is the new time?  
+A) 3:60 PM  
+B) 4:00 PM  
+C) 3:59 PM  
+D) 2:60 PM  
+
+---
+
+**Answer Key:**  
+Q1:A, Q2:C, Q3:B, Q4:A, Q5:A, Q6:B, Q7:A, Q8:A, Q9:D, Q10:B
+
+<think>
+Alright, I need to generate a comprehensive IQ test for 17-year-olds focusing on Processing Speed. The user has specified that it should have multiple-choice questions testing symbol matching, code substitution, visual scanning, same/different judgments, and simple pattern identification.
+
+First, I'll outline the structure: an introduction explaining the purpose of the test, followed by sections each with their own set of questions. Each section needs 12-15 questions but since it's a sample, maybe just one section for now to keep it manageable.
+
+Starting with symbol matching, I can create images or symbols where two are identical and choose the correct pair from options A-D. For code substitution, replacing symbols with numbers using a key should be straightforward once I set up the key at the top of each question. Visual scanning requires identifying a specific item among distractors, perhaps using colors.
+
+Same/different judgments can involve comparing two sets quickly, maybe shapes or letters. Simple patterns could use sequences like shapes repeating every other step. Each question needs to be clear and quick enough for 17-year-olds, so visual clarity is key without being too complicated.
+
+I'll number each question as Q1, etc., and include the answer key at the end in the specified format. I need to ensure all options are present except one correct answer. Also, time limit of 5 minutes seems reasonable given the number of questions.
+
+Let me draft a few examples for each section type:
+
+For symbol matching: Show three pairs where two are same, pick the pair with identical symbols.
+For code substitution: Replace shapes with letters using a key provided at top.
+For visual scanning: Find 'G' among other colors quickly.
+Same/different: Compare two groups and determine which one is different or same.
+Patterns: Identify next shape in a sequence.
+
+I'll make sure each question has exactly four options (A-D) with only one correct answer. The instructions should be clear, emphasizing speed and accuracy without being confusing.
+
+Once all questions are drafted, I'll check that they cover the required skills and fit within the time frame. The answer key will follow at the end.
+</think>
+
+### Processing Speed Test for 17-Year-Olds  
+**Time Limit:** 5 Minutes  
+
+---
+
+#### **Section: Symbol Matching (12 Questions)**  
+
+**Instructions:** Identify which pair of symbols matches each other exactly. Choose your answer from A, B, C, or D.  
+
+**Q1**  
+Symbol Pair 1: 🎢🎬  
+Symbol Pair 2: 🎤🎬  
+Symbol Pair 3: 🎨🎬  
+Which pair is identical?  
+A) 1  
+B) 2  
+C) 3  
+D) None of the above  
+
+**Q2**  
+Symbol Pair 1: 🔥🔥  
+Symbol Pair 2: 🔥🔥  
+Symbol Pair 3: 🔥🔥  
+Which pair matches exactly?  
+A) 1  
+B) 2  
+C) 3  
+D) All are identical  
+
+---
+
+#### **Section: Code Substitution (9 Questions)**  
+
+**Instructions:** Replace the symbols with their corresponding numbers or letters based on the key provided at the top of each question. Choose your answer from A, B, C, or D.  
+
+**Key for Q1-Q3:**  
+Symbol | Number/Letter  
+"—" | 5  
+"#" | 9  
+"." | 2  
+":" | 7  
+
+**Q1**  
+Symbol String: : . # —  
+What is the corresponding number/letter string?  
+A) 7,2,9,5  
+B) 5,2,9,7  
+C) 7,5,2,9  
+D) 9,5,2,7  
+
+---
+
+#### **Section: Visual Scanning (6 Questions)**  
+
+**Instructions:** Find the target item in each set quickly and choose your answer from A, B, C, or D.  
+
+**Q1**  
+Set of Symbols: 🌅🌈🌞🌞  
+Which symbol is the '🌞'?  
+A) 1  
+B) 2  
+C) 3  
+D) 4  
+
+---
+
+#### **Section: Same/Different Judgments (5 Questions)**  
+
+**Instructions:** Compare the two sets of symbols or shapes in each question and choose which set is different.  
+
+**Q1**  
+Set A: 🎲Dice with '3' showing | Set B: 🎲Dice with '4' showing  
+Which set is different?  
+A) Set A  
+B) Set B  
+
+---
+
+#### **Section: Simple Pattern Identification (5 Questions)**  
+
+**Instructions:** Identify the pattern in each sequence and choose the next item from A, B, C, or D.  
+
+**Q1**  
+Pattern: 🎯🎯🏀🏀  
+Next Symbol: ?  
+A) 🎯  
+B) 🏀  
+C) 🏅  
+D) 🕻️  
+
+---
+
+### **Answer Key:**  
+1:A, 2:B, 3:C, ... (Continue with the rest of the answers based on your test design).
+
