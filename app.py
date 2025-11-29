@@ -4,15 +4,22 @@ import requests
 import re
 from datetime import datetime, timedelta
 import uuid
-from typing import Dict, List, Any, Optional
+from typing import Dict, List, Any, Optional, Tuple
 import os
 import threading
 from concurrent.futures import ThreadPoolExecutor
 from section_prompts import get_section_prompts
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Simple configuration
 OLLAMA_BASE_URL = os.getenv('OLLAMA_BASE_URL', 'http://localhost:11434')
 DEEPSEEK_MODEL = os.getenv('DEEPSEEK_MODEL', 'deepseek-r1:7b')
+DEEPSEEK_API_URL = os.getenv('DEEPSEEK_API_URL', 'https://api.deepseek.com/v1/chat/completions')
+DEEPSEEK_API_KEY = os.getenv('DEEPSEEK_API_KEY', '')
+DEEPSEEK_CLOUD_MODEL = os.getenv('DEEPSEEK_CLOUD_MODEL', 'deepseek-chat')
+PROVIDER = os.getenv('PROVIDER', 'ollama').lower()  # 'ollama' or 'deepseek'
 SECRET_KEY = os.getenv('SECRET_KEY', 'your-secret-key-here')
 DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 HOST = os.getenv('HOST', '0.0.0.0')
@@ -24,26 +31,42 @@ app = Flask(__name__)
 CORS(app)
 app.config['SECRET_KEY'] = SECRET_KEY
 
-# Simple in-memory storage for tests and scores with thread safety
+# Simple in-memory storage for tests with thread safety
 tests_storage = {}
-scores_storage = []
 storage_lock = threading.RLock()
 
 # Thread pool for asynchronous test generation
 executor = ThreadPoolExecutor(max_workers=3)
+
+# Background cleanup thread
+cleanup_thread = None
 
 # Configuration for cleanup
 MAX_TEST_AGE_HOURS = 24  # Remove tests older than 24 hours
 MAX_STORED_TESTS = 100   # Maximum number of tests to keep in memory
 
 class IQTestGenerator:
-    def __init__(self, ollama_url: str = None, model: str = None):
+    def __init__(self, provider: str = None, ollama_url: str = None, model: str = None):
+        self.provider = (provider or PROVIDER).lower()
         self.ollama_url = ollama_url or OLLAMA_BASE_URL
         self.model = model or DEEPSEEK_MODEL
         self.session = requests.Session()
     
-    def _generate_test_section_by_section(self, age: int, test_id: str) -> Dict[str, Any]:
+    def _generate_test_section_by_section(self, age: int, test_id: str, provider: Optional[str] = None) -> Dict[str, Any]:
         """Generate a complete IQ test section by section to avoid token limits"""
+        current_provider = (provider or self.provider).lower()
+        if current_provider not in ['ollama', 'deepseek']:
+            return {
+                "success": False,
+                "error": "Provider must be either 'ollama' or 'deepseek'"
+            }
+        
+        if current_provider == 'deepseek' and not DEEPSEEK_API_KEY:
+            return {
+                "success": False,
+                "error": "DEEPSEEK_API_KEY not configured. Please set it in your environment variables."
+            }
+        
         # Validate age parameter
         if not (10 <= age <= 18):
             return {
@@ -68,12 +91,23 @@ class IQTestGenerator:
             section_prompt = section_prompts[section_name]
             
             # Generate section content
-            section_content = self._call_ollama(section_prompt)
+            try:
+                if current_provider == 'deepseek':
+                    section_content = self._call_deepseek_cloud(section_prompt)
+                else:
+                    section_content = self._call_ollama(section_prompt)
+            except Exception as e:
+                return {
+                    "success": False,
+                    "error": f"Failed to generate section {section_name}: {str(e)}",
+                    "provider": current_provider
+                }
             
             if not section_content:
                 return {
                     "success": False,
-                    "error": f"Failed to generate section: {section_name}"
+                    "error": f"Failed to generate section: {section_name}",
+                    "provider": current_provider
                 }
 
             cleaned = re.sub(r'<think>.*?</think>', '', section_content, flags=re.DOTALL)
@@ -86,12 +120,39 @@ class IQTestGenerator:
                 if test_id in tests_storage:
                     tests_storage[test_id].update({
                         "status": "generating",
-                        "progress": f"Completed section {i+1}/{len(section_order)}: {section_name}",
-                        "current_section": section_name
+                        "progress": f"{i+1}/{len(section_order)}",
+                        "current_section": section_name,
+                        "provider": current_provider
                     })
         
         # Save complete test to file
-        filepath = self._save_test_to_file(test_content, age, test_id)
+        is_valid, validation_errors = self._validate_test_schema(test_content)
+        if not is_valid:
+            error_message = "Schema validation failed"
+            if validation_errors:
+                error_message += f": {'; '.join(validation_errors)}"
+            with storage_lock:
+                if test_id in tests_storage:
+                    tests_storage[test_id].update({
+                        "status": "failed",
+                        "progress": "validation_failed",
+                        "current_section": "validation",
+                        "error": error_message,
+                        "provider": current_provider
+                    })
+            return {
+                "success": False,
+                "error": error_message,
+                "provider": current_provider
+            }
+
+        try:
+            filepath = self._save_test_to_file(test_content, age, test_id)
+        except Exception as e:
+            return {
+                "success": False,
+                "error": f"Failed to save test file: {str(e)}"
+            }
         
         # Update test record with completion and cleanup old tests
         with storage_lock:
@@ -100,17 +161,19 @@ class IQTestGenerator:
                 "progress": "completed",
                 "current_section": "completed",
                 "file_path": filepath,
-                "completed_at": datetime.now().isoformat()
+                "completed_at": datetime.now().isoformat(),
+                "provider": current_provider
             })
             
-            # Cleanup old tests
-            self._cleanup_old_tests()
+            # Cleanup old tests (excluding current test)
+            self._cleanup_old_tests(exclude_test_id=test_id)
         
         return {
             "success": True,
             "test_id": test_id,
             "message": "Test generated successfully",
-            "file_path": filepath
+            "file_path": filepath,
+            "provider": current_provider
         }
     
     def _call_ollama(self, prompt: str) -> str:
@@ -127,15 +190,150 @@ class IQTestGenerator:
             }
         }
         
-        response = self.session.post(url, json=payload, timeout=300)
-        response.raise_for_status()
+        try:
+            response = self.session.post(url, json=payload, timeout=300)
+            response.raise_for_status()
+            
+            result = response.json()
+            
+            if 'response' in result and result['response']:
+                return result['response']
+            else:
+                raise Exception("Empty or invalid response from Ollama API")
+                
+        except requests.exceptions.Timeout:
+            raise Exception("Ollama API request timed out")
+        except requests.exceptions.ConnectionError:
+            raise Exception("Cannot connect to Ollama API")
+        except requests.exceptions.RequestException as e:
+            raise Exception(f"Ollama API request failed: {str(e)}")
+        except ValueError as e:
+            raise Exception(f"Invalid JSON response from Ollama API: {str(e)}")
+
+    def _call_deepseek_cloud(self, prompt: str) -> str:
+        """Call DeepSeek Cloud API with the given prompt"""
+        if not DEEPSEEK_API_KEY:
+            raise Exception("DEEPSEEK_API_KEY not configured. Please set it in your environment variables.")
         
-        result = response.json()
+        headers = {
+            "Authorization": f"Bearer {DEEPSEEK_API_KEY}",
+            "Content-Type": "application/json"
+        }
         
-        if 'response' in result:
-            return result['response']
-        else:
-            raise Exception("Invalid response format from Ollama API")
+        data = {
+            "model": DEEPSEEK_CLOUD_MODEL,
+            "messages": [{"role": "user", "content": prompt}],
+            "temperature": TEMPERATURE,
+            "top_p": TOP_P
+        }
+        
+        try:
+            response = self.session.post(DEEPSEEK_API_URL, headers=headers, json=data, timeout=300)
+            response.raise_for_status()
+        except requests.exceptions.Timeout:
+            raise Exception("DeepSeek Cloud API request timed out")
+        except requests.exceptions.ConnectionError:
+            raise Exception("Cannot connect to DeepSeek Cloud API")
+        except requests.exceptions.RequestException as e:
+            raise Exception(f"DeepSeek Cloud API request failed: {str(e)}")
+        
+        try:
+            result = response.json()
+        except ValueError as e:
+            raise Exception(f"Invalid JSON response from DeepSeek Cloud API: {str(e)}")
+        
+        choices = result.get('choices', [])
+        if not choices:
+            raise Exception("Invalid response format from DeepSeek Cloud API")
+        
+        message = choices[0].get('message', {})
+        content = message.get('content')
+        if not content:
+            raise Exception("Empty content returned from DeepSeek Cloud API")
+        
+        return content
+    
+    def _validate_test_schema(self, content: str) -> Tuple[bool, List[str]]:
+        """Validate that generated IQ test content follows the expected schema."""
+        errors: List[str] = []
+        
+        if not content or not content.strip():
+            return False, ["Test content is empty"]
+
+        expected_sections = [
+            ("1", "Verbal Reasoning"),
+            ("2", "Mathematical Reasoning"),
+            ("3", "Spatial/Visual Reasoning")
+        ]
+
+        section_pattern = re.compile(r"Section\s+(\d+):\s+([^\n]+)")
+        matches = list(section_pattern.finditer(content))
+
+        if len(matches) != len(expected_sections):
+            errors.append(f"Expected {len(expected_sections)} sections but found {len(matches)}")
+
+        sections: List[Tuple[re.Match, str]] = []
+        for index, match in enumerate(matches):
+            start = match.start()
+            end = matches[index + 1].start() if index + 1 < len(matches) else len(content)
+            sections.append((match, content[start:end]))
+
+        for idx, expected in enumerate(expected_sections):
+            if idx >= len(sections):
+                errors.append(f"Missing section {expected[0]}: {expected[1]}")
+                continue
+
+            match, section_text = sections[idx]
+            section_number, section_title = expected
+
+            found_number = match.group(1)
+            found_header = match.group(0).strip()
+            found_title = match.group(2).strip()
+
+            if found_number != section_number:
+                errors.append(f"Expected Section {section_number} but found Section {found_number}")
+
+            if expected[1].lower() not in found_title.lower():
+                errors.append(f"Section {section_number} header should include '{expected[1]}' but found '{found_title}'")
+
+            header_end = match.end()
+            section_body = content[header_end: sections[idx + 1][0].start()] if idx + 1 < len(sections) else content[header_end:]
+            section_body = section_body.strip()
+
+            answer_key_match = re.search(r"Answer\s*Key:\s*(.*)", section_body, re.DOTALL | re.IGNORECASE)
+            if not answer_key_match:
+                errors.append(f"Section {section_number} missing 'Answer Key'")
+                continue
+
+            questions_text = section_body[:answer_key_match.start()].strip()
+            answer_text = answer_key_match.group(1).strip()
+
+            question_pattern = re.compile(r"(\d+)\.\s*Question:\s*(.*?)(?=\n\d+\.\s*Question:|\nAnswer\s*Key:|\Z)", re.DOTALL | re.IGNORECASE)
+            question_matches = list(question_pattern.finditer(questions_text))
+
+            if len(question_matches) != 10:
+                errors.append(f"Section {section_number} should contain 10 questions but found {len(question_matches)}")
+
+            for q_idx, question_match in enumerate(question_matches, start=1):
+                question_number = question_match.group(1).strip()
+                if question_number != str(q_idx):
+                    errors.append(f"Section {section_number} question numbering issue: expected {q_idx} but found {question_number}")
+
+                question_block = question_match.group(2)
+                options = re.findall(r"^[A-D]\)\s+.+", question_block, flags=re.MULTILINE)
+                if len(options) != 4:
+                    errors.append(f"Section {section_number} Question {question_number} should have 4 options but found {len(options)}")
+
+            answer_lines = re.findall(r"^(\d+)\.\s*([A-D])\b", answer_text, flags=re.MULTILINE)
+            if len(answer_lines) != 10:
+                errors.append(f"Section {section_number} Answer Key should list 10 answers but found {len(answer_lines)}")
+            else:
+                for expected_num in range(1, 11):
+                    if str(expected_num) not in [num for num, _ in answer_lines]:
+                        errors.append(f"Section {section_number} Answer Key missing entry for question {expected_num}")
+                        break
+
+        return (len(errors) == 0, errors)
     
     def _save_test_to_file(self, content: str, age: int, test_id: str) -> str:
         """Save test content to file with security validation"""
@@ -162,14 +360,16 @@ class IQTestGenerator:
         
         return filepath
     
-    def _cleanup_old_tests(self):
+    def _cleanup_old_tests(self, exclude_test_id: str = None):
         """Remove old test records from memory"""
         current_time = datetime.now()
         cutoff_time = current_time - timedelta(hours=MAX_TEST_AGE_HOURS)
         
-        # Remove old test records
+        # Remove old test records (excluding specified test)
         old_test_ids = []
         for test_id, test_record in tests_storage.items():
+            if test_id == exclude_test_id:
+                continue  # Skip the excluded test
             created_at = datetime.fromisoformat(test_record['created_at'])
             if created_at < cutoff_time:
                 old_test_ids.append(test_id)
@@ -185,10 +385,10 @@ class IQTestGenerator:
                     pass  # Ignore file removal errors
             del tests_storage[test_id]
         
-        # If we still have too many tests, remove the oldest ones
+        # If we still have too many tests, remove the oldest ones (excluding specified test)
         if len(tests_storage) > MAX_STORED_TESTS:
             sorted_tests = sorted(
-                tests_storage.items(), 
+                [(tid, trecord) for tid, trecord in tests_storage.items() if tid != exclude_test_id], 
                 key=lambda x: datetime.fromisoformat(x[1]['created_at'])
             )
             excess_count = len(tests_storage) - MAX_STORED_TESTS
@@ -204,108 +404,25 @@ class IQTestGenerator:
                 del tests_storage[test_id]
 
 
-class IQTestScorer:
-    def __init__(self):
-        pass
-    
-    def score_test(self, answers: Dict[str, str], test_content: str) -> Dict[str, Any]:
-        """Score a completed IQ test"""
-        # Extract answer key from test content
-        answer_key = self._extract_answer_key(test_content)
-        
-        if not answer_key:
-            return {
-                "success": False,
-                "error": "Could not extract answer key from test"
-            }
-        
-        # Calculate score
-        correct_answers = 0
-        total_questions = len(answer_key)
-        
-        for question_num, correct_answer in answer_key.items():
-            user_answer = answers.get(question_num)
-            if user_answer and user_answer.upper() == correct_answer.upper():
-                correct_answers += 1
-        
-        # Calculate percentage and IQ score
-        percentage = (correct_answers / total_questions) * 100 if total_questions > 0 else 0
-        
-        # Proper IQ score calculation using psychometric scaling
-        # Assuming a normal distribution with mean=50% and SD=15% of total questions
-        raw_score = correct_answers
-        mean_score = total_questions * 0.5  # 50% as baseline
-        std_dev = total_questions * 0.15    # 15% standard deviation
-        
-        # Calculate z-score and convert to IQ scale (mean=100, SD=15)
-        if std_dev > 0:
-            z_score = (raw_score - mean_score) / std_dev
-            iq_score = 100 + (z_score * 15)
-        else:
-            iq_score = 100  # Default to average if no variance
-        
-        # Clamp IQ score to reasonable range (60-160)
-        iq_score = max(60, min(160, iq_score))
-        
-        # Determine classification
-        if iq_score >= 130:
-            classification = "Very Superior"
-        elif iq_score >= 120:
-            classification = "Superior"
-        elif iq_score >= 110:
-            classification = "High Average"
-        elif iq_score >= 90:
-            classification = "Average"
-        elif iq_score >= 80:
-            classification = "Low Average"
-        else:
-            classification = "Below Average"
-        
-        return {
-            "success": True,
-            "score": {
-                "correct_answers": correct_answers,
-                "total_questions": total_questions,
-                "percentage": round(percentage, 2),
-                "iq_score": round(iq_score, 1),
-                "classification": classification
-            }
-        }
-    
-    def _extract_answer_key(self, test_content: str) -> Dict[str, str]:
-        """Extract answer key from test content with improved regex"""
-        answer_key = {}
-        
-        # More robust patterns for answer key extraction
-        patterns = [
-            r'Answer Key:\s*([^\n]+)',
-            r'Answers:\s*([^\n]+)',
-            r'Key:\s*([^\n]+)',
-            r'Answer[\s]*Key[\s]*:?\s*([^\n]+)',
-            r'Correct[\s]*Answers?:\s*([^\n]+)'
-        ]
-        
-        for pattern in patterns:
-            matches = re.findall(pattern, test_content, re.IGNORECASE | re.MULTILINE)
-            for match in matches:
-                # Parse individual answers with more flexible patterns
-                # Handle formats like: 1:A, 2:B, 3:C or 1. A, 2. B, 3. C or Q1:A, Q2:B
-                answer_patterns = [
-                    r'(?:Q|Question)?\s*(\d+)\s*[:.]?\s*([A-D])',
-                    r'(\d+)\s*[:.]?\s*([A-D])',
-                    r'(\d+)\s*=\s*([A-D])'
-                ]
-                
-                for answer_pattern in answer_patterns:
-                    answers = re.findall(answer_pattern, match, re.IGNORECASE)
-                    for question_num, answer in answers:
-                        answer_key[question_num.strip()] = answer.upper()
-        
-        return answer_key
-
-# Initialize generators
+# Initialize generator
 test_generator = IQTestGenerator()
-test_scorer = IQTestScorer()
+
+def periodic_cleanup():
+    """Periodic cleanup function that runs every hour"""
+    import time
+    while True:
+        time.sleep(3600)  # Sleep for 1 hour
+        try:
+            test_generator._cleanup_old_tests()
+        except Exception:
+            pass  # Ignore cleanup errors in background thread
+
+def start_cleanup_thread():
+    """Start the background cleanup thread"""
+    global cleanup_thread
+    if cleanup_thread is None or not cleanup_thread.is_alive():
+        cleanup_thread = threading.Thread(target=periodic_cleanup, daemon=True)
+        cleanup_thread.start()
 
 def create_error_response(message: str, status_code: int = 400) -> tuple:
     """Create standardized error response"""
@@ -338,10 +455,17 @@ def generate_test():
     try:
         data = request.get_json()
         age = data.get('age', 14)
+        provider = (data.get('provider', PROVIDER) if data else PROVIDER).lower()
         
         # Validate age
         if not (10 <= age <= 18):
             return create_error_response("Age must be between 10 and 18", 400)
+        
+        if provider not in ['ollama', 'deepseek']:
+            return create_error_response("Provider must be either 'ollama' or 'deepseek'", 400)
+        
+        if provider == 'deepseek' and not DEEPSEEK_API_KEY:
+            return create_error_response("DEEPSEEK_API_KEY not configured. Please set it in your environment variables.", 400)
         
         # Generate unique test ID
         test_id = str(uuid.uuid4())
@@ -352,20 +476,51 @@ def generate_test():
                 "test_id": test_id,
                 "age": age,
                 "status": "generating",
-                "progress": "0/6",
+                "progress": "0/3",
                 "current_section": "initializing",
+                "provider": provider,
                 "created_at": datetime.now().isoformat()
             }
         
         # Submit generation task to thread pool
         future = executor.submit(
             test_generator._generate_test_section_by_section,
-            age, test_id
+            age, test_id, provider
         )
+        
+        # Add callback to handle task completion/failure
+        def task_done_callback(future_result):
+            try:
+                result = future_result.result()
+                if not result.get("success", False):
+                    # Update status to failed if generation failed
+                    with storage_lock:
+                        if test_id in tests_storage:
+                            tests_storage[test_id].update({
+                                "status": "failed",
+                                "progress": "failed",
+                                "current_section": "failed",
+                                "error": result.get("error", "Unknown error"),
+                                "provider": result.get("provider", provider)
+                            })
+            except Exception as e:
+                # Update status to failed if task raised an exception
+                with storage_lock:
+                    if test_id in tests_storage:
+                        tests_storage[test_id].update({
+                            "status": "failed",
+                            "progress": "failed",
+                            "current_section": "failed",
+                            "error": str(e),
+                            "provider": provider
+                        })
+        
+        future.add_done_callback(task_done_callback)
         
         return jsonify(create_success_response({
             "test_id": test_id,
-            "status": "generating"
+            "status": "generating",
+            "provider": provider
         }, "Test generation started"))
         
     except Exception as e:
@@ -374,6 +529,10 @@ def generate_test():
 @app.route('/status/<test_id>', methods=['GET'])
 def get_test_status(test_id: str):
     """Get the status of a test generation"""
+    # Validate test_id format
+    if not test_id or not re.match(r'^[a-zA-Z0-9\-_]+', test_id):
+        return create_error_response("Invalid test_id format", 400)
+    
     with storage_lock:
         if test_id not in tests_storage:
             return jsonify({
@@ -382,6 +541,7 @@ def get_test_status(test_id: str):
             }), 404
         
         test_record = tests_storage[test_id].copy()
+    
     return jsonify({
         "success": True,
         "test_id": test_id,
@@ -390,63 +550,11 @@ def get_test_status(test_id: str):
         "current_section": test_record.get("current_section", "unknown"),
         "created_at": test_record["created_at"],
         "completed_at": test_record.get("completed_at"),
-        "file_path": test_record.get("file_path")
+        "file_path": test_record.get("file_path"),
+        "provider": test_record.get("provider"),
+        "error": test_record.get("error")  # Include error if present
     })
 
-@app.route('/score', methods=['POST'])
-def score_test():
-    """Score a completed IQ test"""
-    try:
-        data = request.get_json()
-        test_id = data.get('test_id')
-        answers = data.get('answers', {})
-        
-        if not test_id or not re.match(r'^[a-zA-Z0-9\-_]+', test_id):
-            return create_error_response("Invalid test_id format", 400)
-        
-        with storage_lock:
-            if test_id not in tests_storage:
-                return create_error_response("Test not found", 404)
-            
-            test_record = tests_storage[test_id].copy()
-        
-            if test_record["status"] != "completed":
-                return create_error_response("Test not completed yet", 400)
-        
-        # Read test content from file
-        file_path = test_record.get("file_path")
-        if not file_path or not os.path.exists(file_path):
-            return create_error_response("Test file not found", 404)
-        
-        with open(file_path, 'r', encoding='utf-8') as f:
-            test_content = f.read()
-        
-        # Score the test
-        result = test_scorer.score_test(answers, test_content)
-        
-        if result["success"]:
-            # Store score with thread safety
-            score_record = {
-                "test_id": test_id,
-                "score": result["score"],
-                "scored_at": datetime.now().isoformat()
-            }
-            with storage_lock:
-                scores_storage.append(score_record)
-                # Limit stored scores to prevent memory issues
-                if len(scores_storage) > 1000:
-                    scores_storage.pop(0)  # Remove oldest score
-            
-            return jsonify({
-                "success": True,
-                "test_id": test_id,
-                "score": result["score"]
-            })
-        else:
-            return jsonify(result), 400
-            
-    except Exception as e:
-        return create_error_response(str(e), 500)
 
 @app.route('/tests', methods=['GET'])
 def list_tests():
@@ -457,14 +565,8 @@ def list_tests():
             "tests": list(tests_storage.values())
         })
 
-@app.route('/scores', methods=['GET'])
-def list_scores():
-    """List all test scores"""
-    with storage_lock:
-        return jsonify({
-            "success": True,
-            "scores": scores_storage.copy()
-        })
 
 if __name__ == '__main__':
+    # Start background cleanup thread
+    start_cleanup_thread()
     app.run(host=HOST, port=PORT, debug=DEBUG)
