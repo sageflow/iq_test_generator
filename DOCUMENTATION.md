@@ -96,10 +96,25 @@ Returns all test scores.
 6. Pull model: `ollama pull deepseek-r1:7b`
 7. Run application: `python app.py`
 
+### Docker
+
+1. Copy `.env.example` to `.env` and fill in your values (or create a `.env` with the variables below):
+   ```
+   PROVIDER=ollama            # or 'deepseek'
+   OLLAMA_BASE_URL=http://host.docker.internal:11434
+   DEEPSEEK_API_KEY=          # required when PROVIDER=deepseek
+   ```
+2. Build and start: `docker compose up -d`
+3. Verify: `curl http://localhost:5000/health`
+4. Stop: `docker compose down`
+
+Generated test files are persisted to `./tests/` via a volume mount.
+
 ### Dependencies
 - Flask 2.3.3
 - Flask-CORS 4.0.0
 - requests 2.31.0
+- python-dotenv 1.0.1
 
 ## License
 

@@ -1,0 +1,16 @@
+services:
+  iq-test-generator:
+    build: .
+    ports:
+      - "5000:5000"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      # Default: reach Ollama running on the Docker host
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+      - HOST=0.0.0.0
+    volumes:
+      # Persist generated test files on the host
+      - ./tests:/app/tests
+    restart: unless-stopped
