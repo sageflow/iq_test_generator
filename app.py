@@ -19,7 +19,10 @@ DEEPSEEK_MODEL = os.getenv('DEEPSEEK_MODEL', 'deepseek-r1:7b')
 DEEPSEEK_API_URL = os.getenv('DEEPSEEK_API_URL', 'https://api.deepseek.com/v1/chat/completions')
 DEEPSEEK_API_KEY = os.getenv('DEEPSEEK_API_KEY', '')
 DEEPSEEK_CLOUD_MODEL = os.getenv('DEEPSEEK_CLOUD_MODEL', 'deepseek-chat')
-PROVIDER = os.getenv('PROVIDER', 'ollama').lower()  # 'ollama' or 'deepseek'
+GEMINI_API_KEY = os.getenv('GEMINI_API_KEY', '')
+GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.0-flash')
+GEMINI_API_URL = os.getenv('GEMINI_API_URL', 'https://generativelanguage.googleapis.com/v1beta')
+PROVIDER = os.getenv('PROVIDER', 'ollama').lower()  # 'ollama', 'deepseek', or 'gemini'
 SECRET_KEY = os.getenv('SECRET_KEY', 'your-secret-key-here')
 DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 HOST = os.getenv('HOST', '0.0.0.0')
@@ -55,16 +58,22 @@ class IQTestGenerator:
     def _generate_test_section_by_section(self, age: int, test_id: str, provider: Optional[str] = None) -> Dict[str, Any]:
         """Generate a complete IQ test section by section to avoid token limits"""
         current_provider = (provider or self.provider).lower()
-        if current_provider not in ['ollama', 'deepseek']:
+        if current_provider not in ['ollama', 'deepseek', 'gemini']:
             return {
                 "success": False,
-                "error": "Provider must be either 'ollama' or 'deepseek'"
+                "error": "Provider must be 'ollama', 'deepseek', or 'gemini'"
             }
         
         if current_provider == 'deepseek' and not DEEPSEEK_API_KEY:
             return {
                 "success": False,
                 "error": "DEEPSEEK_API_KEY not configured. Please set it in your environment variables."
+            }
+        
+        if current_provider == 'gemini' and not GEMINI_API_KEY:
+            return {
+                "success": False,
+                "error": "GEMINI_API_KEY not configured. Please set it in your environment variables."
             }
         
         # Validate age parameter
@@ -94,6 +103,8 @@ class IQTestGenerator:
             try:
                 if current_provider == 'deepseek':
                     section_content = self._call_deepseek_cloud(section_prompt)
+                elif current_provider == 'gemini':
+                    section_content = self._call_gemini(section_prompt)
                 else:
                     section_content = self._call_ollama(section_prompt)
             except Exception as e:
@@ -252,7 +263,59 @@ class IQTestGenerator:
             raise Exception("Empty content returned from DeepSeek Cloud API")
         
         return content
-    
+
+    def _call_gemini(self, prompt: str) -> str:
+        """Call Google Gemini Cloud API with the given prompt"""
+        if not GEMINI_API_KEY:
+            raise Exception("GEMINI_API_KEY not configured. Please set it in your environment variables.")
+        
+        url = f"{GEMINI_API_URL}/models/{GEMINI_MODEL}:generateContent"
+        
+        headers = {
+            "Content-Type": "application/json",
+            "x-goog-api-key": GEMINI_API_KEY
+        }
+        
+        data = {
+            "contents": [{
+                "parts": [{"text": prompt}]
+            }],
+            "generationConfig": {
+                "temperature": TEMPERATURE,
+                "topP": TOP_P
+            }
+        }
+        
+        try:
+            response = self.session.post(url, headers=headers, json=data, timeout=300)
+            response.raise_for_status()
+        except requests.exceptions.Timeout:
+            raise Exception("Gemini API request timed out")
+        except requests.exceptions.ConnectionError:
+            raise Exception("Cannot connect to Gemini API")
+        except requests.exceptions.RequestException as e:
+            raise Exception(f"Gemini API request failed: {str(e)}")
+        
+        try:
+            result = response.json()
+        except ValueError as e:
+            raise Exception(f"Invalid JSON response from Gemini API: {str(e)}")
+        
+        candidates = result.get('candidates', [])
+        if not candidates:
+            raise Exception("No candidates returned from Gemini API")
+        
+        content = candidates[0].get('content', {})
+        parts = content.get('parts', [])
+        if not parts:
+            raise Exception("Empty content returned from Gemini API")
+        
+        text = parts[0].get('text', '')
+        if not text:
+            raise Exception("Empty text returned from Gemini API")
+        
+        return text
+
     def _validate_test_schema(self, content: str) -> Tuple[bool, List[str]]:
         """Validate that generated IQ test content follows the expected schema."""
         errors: List[str] = []
@@ -461,11 +524,14 @@ def generate_test():
         if not (10 <= age <= 18):
             return create_error_response("Age must be between 10 and 18", 400)
         
-        if provider not in ['ollama', 'deepseek']:
-            return create_error_response("Provider must be either 'ollama' or 'deepseek'", 400)
+        if provider not in ['ollama', 'deepseek', 'gemini']:
+            return create_error_response("Provider must be 'ollama', 'deepseek', or 'gemini'", 400)
         
         if provider == 'deepseek' and not DEEPSEEK_API_KEY:
             return create_error_response("DEEPSEEK_API_KEY not configured. Please set it in your environment variables.", 400)
+        
+        if provider == 'gemini' and not GEMINI_API_KEY:
+            return create_error_response("GEMINI_API_KEY not configured. Please set it in your environment variables.", 400)
         
         # Generate unique test ID
         test_id = str(uuid.uuid4())

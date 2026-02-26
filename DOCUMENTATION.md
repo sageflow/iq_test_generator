@@ -2,7 +2,7 @@
 
 ## Overview
 
-A REST API that generates age-appropriate IQ tests for adolescents (10-18 years) using AI. Built with Flask and powered by DeepSeek-R1 via Ollama.
+A REST API that generates age-appropriate IQ tests for adolescents (10-18 years) using AI. Built with Flask and powered by DeepSeek-R1 via Ollama, DeepSeek Cloud, or Google Gemini.
 
 ### Key Features
 - AI-powered test generation with section-specific prompts
@@ -84,8 +84,10 @@ Returns all test scores.
 
 ### Prerequisites
 - Python 3.8+
-- Ollama installed and running
-- DeepSeek-R1:7b model downloaded
+- One of the following AI providers:
+  - **Ollama** (local): Ollama installed and running with DeepSeek-R1:7b model downloaded
+  - **DeepSeek Cloud**: A valid DeepSeek API key
+  - **Gemini Cloud**: A valid Google Gemini API key
 
 ### Setup
 1. Clone the repository
@@ -100,9 +102,11 @@ Returns all test scores.
 
 1. Copy `.env.example` to `.env` and fill in your values (or create a `.env` with the variables below):
    ```
-   PROVIDER=ollama            # or 'deepseek'
+   PROVIDER=ollama            # 'ollama', 'deepseek', or 'gemini'
    OLLAMA_BASE_URL=http://host.docker.internal:11434
    DEEPSEEK_API_KEY=          # required when PROVIDER=deepseek
+   GEMINI_API_KEY=            # required when PROVIDER=gemini
+   GEMINI_MODEL=gemini-2.0-flash  # optional, defaults to gemini-2.0-flash
    ```
 2. Build and start: `docker compose up -d`
 3. Verify: `curl http://localhost:5000/health`
