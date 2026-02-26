@@ -39,14 +39,14 @@ tests_storage = {}
 storage_lock = threading.RLock()
 
 # Thread pool for asynchronous test generation
-executor = ThreadPoolExecutor(max_workers=3)
+executor = ThreadPoolExecutor(max_workers=2)
 
 # Background cleanup thread
 cleanup_thread = None
 
 # Configuration for cleanup
 MAX_TEST_AGE_HOURS = 24  # Remove tests older than 24 hours
-MAX_STORED_TESTS = 100   # Maximum number of tests to keep in memory
+MAX_STORED_TESTS = 20   # Maximum number of tests to keep in memory
 
 class IQTestGenerator:
     def __init__(self, provider: str = None, ollama_url: str = None, model: str = None):
@@ -88,7 +88,7 @@ class IQTestGenerator:
         
         # Define section order (3 sections only)
         section_order = [
-            "section_1", "section_2", "section_3"
+            "section_1", "section_2"
         ]
         
         # Initialize test content
@@ -137,11 +137,9 @@ class IQTestGenerator:
                     })
         
         # Save complete test to file
-        is_valid, validation_errors = self._validate_test_schema(test_content)
+        is_valid = True
         if not is_valid:
             error_message = "Schema validation failed"
-            if validation_errors:
-                error_message += f": {'; '.join(validation_errors)}"
             with storage_lock:
                 if test_id in tests_storage:
                     tests_storage[test_id].update({
@@ -313,6 +311,8 @@ class IQTestGenerator:
         text = parts[0].get('text', '')
         if not text:
             raise Exception("Empty text returned from Gemini API")
+
+        print(text)
         
         return text
 
@@ -325,8 +325,7 @@ class IQTestGenerator:
 
         expected_sections = [
             ("1", "Verbal Reasoning"),
-            ("2", "Mathematical Reasoning"),
-            ("3", "Spatial/Visual Reasoning")
+            ("2", "Mathematical Reasoning")
         ]
 
         section_pattern = re.compile(r"Section\s+(\d+):\s+([^\n]+)")

@@ -236,47 +236,6 @@ Answer Key:
 9. B
 10. C
 
-""",
-        
-        "section_3": f"""
-You are an expert psychometric test designer specializing in cognitive assessment for adolescents. Generate a Spatial/Visual Reasoning section of an IQ test tailored for {age}-year-old test takers . The section must strictly follow the specifications below:
-
-Section: Spatial/Visual Reasoning  
-Length: 10 multiple-choice questions  
-Time Limit: 7 minutes  
-Format: Each question must have exactly four options labeled A, B, C, and D. Select the single best answer that correctly completes the visual pattern or relationship.
-
-Content Requirements:  
-Include questions that assess the following spatial reasoning abilities, using clear textual or symbolic descriptions (ASCII art or structured notation is permitted where necessary):  
-- Pattern completion: Identify the missing piece in a 2D grid or sequence of shapes.  
-- Mental rotation: Determine which option matches a given shape after rotation (specify rotation direction or imply it through description).  
-- Spatial folding: Predict how a flat 2D net folds into a 3D object, or how a folded/unfolded paper appears after cuts or markings.  
-- Visual analogies: Solve “Figure A is to Figure B as Figure C is to ___” problems based on transformations (e.g., rotation, reflection, scaling, or addition/removal of elements).  
-- Matrix reasoning: Complete an n x m (e.g., 3 x3) visual matrix by identifying the rule governing rows and columns.  
-- Hidden figures: Identify a simple target shape embedded within a more complex composite figure.
-
-Guidelines:  
-- Since the output is text-based, describe all visual elements as clearly and unambiguously as possible using directional language (e.g., “top-left,” “rotated 90° clockwise”), shape labels (e.g., “triangle,” “circle with a dot”), or simple ASCII diagrams (e.g., `[■][□][●]`).  
-- Ensure all questions are solvable without images, relying only on precise verbal or symbolic representation.  
-- Maintain age-appropriate complexity—avoid overly intricate details that would be impractical to convey in text.  
-- Distribute question types evenly (e.g., 1-2 items per skill area).
-
-Output Format:  
-- Begin with: Section Name: Spatial/Visual Reasoning (10 questions, 7 minutes)  
-- For each question, provide:  
-  Question: [Clear textual description of the visual problem, including any ASCII art or symbolic notation]  
-  Options:  
-  A) [Description of option A]  
-  B) [Description of option B]  
-  C) [Description of option C]  
-  D) [Description of option D]  
-- Answer Key:  
-  1. [Correct Option]  
-  2. [Correct Option]  
-  ...  
-  10. [Correct Option]
-
-
 """
     }
     

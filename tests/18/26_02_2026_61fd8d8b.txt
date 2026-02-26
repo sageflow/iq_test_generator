@@ -1,0 +1,162 @@
+Section Name: Verbal Reasoning (10 questions, 7 minutes)
+
+1.  Question: Choose the word that is a synonym for "UBIQUITOUS."
+    Options:
+    A) Scarce
+    B) Pervasive
+    C) Unique
+    D) Obsolete
+
+2.  Question: Complete the analogy: Athlete : Team :: Soldier : _____
+    Options:
+    A) Weapon
+    B) Army
+    C) Battle
+    D) Uniform
+
+3.  Question: Choose the word or phrase that best completes the sentence: Despite the initial setbacks, her ______ resolve allowed her to overcome every obstacle and achieve her goal.
+    Options:
+    A) Fickle
+    B) Wavering
+    C) Unwavering
+    D) Indecisive
+
+4.  Question: Read the passage: "The advent of artificial intelligence has sparked considerable debate regarding its potential impact on employment. While some foresee widespread job displacement, others argue that AI will create new industries and roles, ultimately shifting the nature of work rather than eliminating it entirely." What is the main point of contention regarding AI's impact on employment?
+    Options:
+    A) The cost of implementing AI in new industries.
+    B) Whether AI will cause job displacement or create new jobs.
+    C) The ethical implications of AI's development.
+    D) The speed at which AI technology is advancing.
+
+5.  Question: Which word does not belong with the others?
+    Options:
+    A) Apple
+    B) Banana
+    C) Potato
+    D) Orange
+
+6.  Question: Which of the following best describes someone who is "METICULOUS"?
+    Options:
+    A) Careless and disorganized
+    B) Quick to anger
+    C) Extremely careful and precise
+    D) Easily distracted
+
+7.  Question: Complete the analogy: Ignite : Fire :: Trigger : _____
+    Options:
+    A) Explosion
+    B) Weapon
+    C) Safety
+    D) Reload
+
+8.  Question: Choose the word that best completes the sentence: The jury found the defendant guilty, as the prosecutor presented ______ evidence that left no room for reasonable doubt.
+    Options:
+    A) Ambiguous
+    B) Inconclusive
+    C) Irrefutable
+    D) Speculative
+
+9.  Question: Read the passage: "Coral reefs, often called the 'rainforests of the sea,' are incredibly diverse ecosystems supporting a vast array of marine life. However, they are highly vulnerable to changes in ocean temperature and acidity, posing a significant threat to global biodiversity." What is a primary threat to coral reefs mentioned in the passage?
+    Options:
+    A) Overfishing by local communities.
+    B) Pollution from coastal development.
+    C) Fluctuations in ocean temperature and acidity.
+    D) Competition from invasive species.
+
+10. Question: Which word does not belong with the others?
+    Options:
+    A) Violin
+    B) Flute
+    C) Hammer
+    D) Trumpet
+
+---
+
+Answer Key:
+1.  B
+2.  B
+3.  C
+4.  B
+5.  C
+6.  C
+7.  A
+8.  C
+9.  C
+10. C
+
+Section Name: Mathematical Reasoning (10 questions, 10 minutes)
+
+1.  Question: What number comes next in the sequence: 3, 7, 15, 31, __?
+    A) 59
+    B) 61
+    C) 63
+    D) 65
+
+2.  Question: A jacket originally priced at 80 units is on sale with a 25% discount. What is the sale price of the jacket?
+    A) 55 units
+    B) 60 units
+    C) 65 units
+    D) 70 units
+
+3.  Question: A recipe calls for 600 grams of flour to make a cake for 4 people. If you want to make a cake for 6 people, how many grams of flour will you need?
+    A) 750 grams
+    B) 800 grams
+    C) 900 grams
+    D) 1000 grams
+
+4.  Question: If a number X is greater than Y, and Y is 3 less than Z. If Z is 10, which of the following statements must be true about X?
+    A) X = 7
+    B) X < 7
+    C) X > 7
+    D) X = 10
+
+5.  Question: If the word DUCK is coded as 421311 using a simple letter-to-number substitution (A=1, B=2, C=3, etc.), how would the word LION be coded?
+    A) 1291514
+    B) 129514
+    C) 12191514
+    D) 1291415
+
+6.  Question: Complete the numerical analogy: 64 is to 8 as 49 is to __?
+    A) 6
+    B) 7
+    C) 8
+    D) 9
+
+7.  Question: How many milliliters are there in 2.5 liters?
+    A) 2000 ml
+    B) 2250 ml
+    C) 2500 ml
+    D) 2750 ml
+
+8.  Question: A car travels a distance of 120 kilometers in 2 hours and 30 minutes. What is its average speed in kilometers per hour (km/h)?
+    A) 40 km/h
+    B) 45 km/h
+    C) 48 km/h
+    D) 50 km/h
+
+9.  Question: What is the next number in the sequence: 1, 4, 9, 16, __?
+    A) 20
+    B) 22
+    C) 25
+    D) 30
+
+10. Question: A production machine can produce 15 units in 3 minutes. At this rate, how many units can the machine produce in 7 minutes?
+    A) 30 units
+    B) 32 units
+    C) 35 units
+    D) 40 units
+
+---
+
+Answer Key:
+1. C
+2. B
+3. C
+4. C
+5. A
+6. B
+7. C
+8. C
+9. C
+10. C
+
